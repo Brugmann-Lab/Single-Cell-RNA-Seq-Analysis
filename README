@@ -1,0 +1,48 @@
+README for GitHub repository for Single Cell Analysis associated to "Gli3 and Hand2 synergize at low affinity Gli binding sites to initiate mandibular transcriptional networks"
+
+
+License : General Public License version 3.0 (GPLv3.0)
+
+Contact : Please report Bugs, Issues and Improvements on Github
+
+Requirements: R version[>=3.4]
+
+*** Please see that all the source codes have extensively tested on MacOS and Linux [Redhat]. Scripts have not been tested on Windows OS. ***
+
+*** Each Script provides information on Inputs, processing steps and output files *****
+
+########################################################################################
+
+############################################
+Cellranger_processing_Scripts:
+
+#################### Install Cellranger [v2.0.0/v3.0.0]
+#################### Install bcl2fastq  [v2.18.0]
+#################### Install samtools   [v1.8.0]
+#################### cellranger.csv is required to run cellranger
+#################### PATH to reference transcriptome files is required to run cellranger
+#################### PATH-FASTQ path to fastq files in required to run cellranger
+#################### For issues running cellranger, please contact 10x genomics
+#################### ./Cellranger_Mpping_and_Quantification.sh
+#############################################
+
+
+############################################
+Seurat_Analysis_Scripts:
+
+############ R scripts processes Cells and their transcriptome using Seurat [v2.3.4]###############
+############ Script carries out basic filtering, global scaling based normalization and scaling using Seurat Functions
+############ Script regresses out Cellcycle difference between G2m and S phase using ScaleData Function
+############ Please Refer to Seurat [v2.3.4] manual for details on parameters and functions
+############ Inputs : Counts Matrix, Metafile, GeneInfo
+
+
+
+Seurat_Integration_Analysis:
+############ This script performs Integration Analysis E11.5 vs E13.5 MNP cells using Seurat [v3.0.0]###############
+############ Script carries out basic filtering, global scaling based normalization and scaling using Seurat Functions
+############ Script regresses out Cellcycle difference between G2m and S phase using ScaleData Function
+############ Script obtians integration anchors and then uses the same to integrate the datasets
+############ Please Refer to Seurat [v3.0.0] manual for details on parameters and functions
+############ Inputs : Counts matrix and Metafiles
+#############################################
