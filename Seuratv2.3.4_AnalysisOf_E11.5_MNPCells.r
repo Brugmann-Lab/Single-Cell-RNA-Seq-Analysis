@@ -31,9 +31,9 @@ M <- CreateSeuratObject(raw.data = data, min.cells =3, min.genes = 200, project=
 ############### Load Cell Annotations ###################
 CellsMeta = M@meta.data
 head(CellsMeta)
-CellsMeta["Stages"] <- pd$Stages
+CellsMeta["Stage"] <- pd$Stage
 head(CellsMeta)
-CellsMetaTrim <- subset(CellsMeta, select = c("Stages"))
+CellsMetaTrim <- subset(CellsMeta, select = c("Stage"))
 M <- AddMetaData(M, CellsMetaTrim)
 
 CellsMeta = M@meta.data

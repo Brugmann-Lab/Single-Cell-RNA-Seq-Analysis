@@ -49,6 +49,11 @@ CellsMeta["Stage"] <- metactrl$Stage
 CellsMetaTrim <- subset(CellsMeta, select = c("Stage"))
 ctrl <- AddMetaData(ctrl, CellsMetaTrim)
 
+CellsMeta = ctrl@meta.data
+CellsMeta["LineageAnnotations"] <- metactrl$LineageAnnotations
+CellsMetaTrim <- subset(CellsMeta, select = c("LineageAnnotations"))
+ctrl <- AddMetaData(ctrl, CellsMetaTrim)
+
 ctrl$stim <- "E11.5MNP"
 ctrl <- NormalizeData(ctrl, verbose = FALSE)
 ctrl <- FindVariableFeatures(ctrl, selection.method = "vst", nfeatures = 2000)
@@ -64,6 +69,11 @@ stim <- AddMetaData(stim, CellsMetaTrim)
 CellsMeta = stim@meta.data
 CellsMeta["Stage"] <- metastim$Stage
 CellsMetaTrim <- subset(CellsMeta, select = c("Stage"))
+stim <- AddMetaData(stim, CellsMetaTrim)
+
+CellsMeta = stim@meta.data
+CellsMeta["LineageAnnotations"] <- metastim$LineageAnnotations
+CellsMetaTrim <- subset(CellsMeta, select = c("LineageAnnotations"))
 stim <- AddMetaData(stim, CellsMetaTrim)
 
 stim$stim <- "E13.5MNP"
@@ -117,6 +127,10 @@ DimPlot(mnp.combined_aftercc, reduction = "umap", group.by="Stage")
 ggsave('UMAP_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithStage.png', width=15, height=15)
 htmlwidgets::saveWidget(as.widget(ggplotly()), 'UMAP_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithStage.html')
 
+DimPlot(mnp.combined_aftercc, reduction = "umap", group.by="LineageAnnotations")
+ggsave('UMAP_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithLineageAnnotations.png', width=15, height=15)
+htmlwidgets::saveWidget(as.widget(ggplotly()), 'UMAP_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithLineageAnnotations.html')
+
 # Visualization using tSNE
 p1 <- DimPlot(mnp.combined_aftercc, reduction = "tsne", group.by = "stim")
 p2 <- DimPlot(mnp.combined_aftercc, reduction = "tsne", label = TRUE)
@@ -138,6 +152,10 @@ htmlwidgets::saveWidget(as.widget(ggplotly()), 'tSNE_IntegrationPlot_E11.5_vs_E1
 DimPlot(mnp.combined_aftercc, reduction = "tsne", group.by="Stage")
 ggsave('tSNE_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithStage.png', width=15, height=15)
 htmlwidgets::saveWidget(as.widget(ggplotly()), 'tSNE_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithStage.html')
+
+DimPlot(mnp.combined_aftercc, reduction = "tsne", group.by="LineageAnnotations")
+ggsave('tSNE_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithLineageAnnotations.png', width=15, height=15)
+htmlwidgets::saveWidget(as.widget(ggplotly()), 'tSNE_IntegrationPlot_E11.5_vs_E13.5_MNP_afterCCremoval_WithLineageAnnotations.html')
 
 Idents(mnp.combined_aftercc) <- mnp.combined_aftercc@meta.data$seurat_clusters
 
